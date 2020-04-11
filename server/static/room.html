@@ -1,18 +1,32 @@
 <!DOCTYPE html>
+<html>
 
 <head>
     <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/room.css">
     <script type="text/javascript" src="scripts/room.js"></script>
-<html>
-    <div id="main">
-        <section id="current-data"></section>
-    </div>
+</head>
 
-    <div id="history">
-        <table id="data">
-            <td>Date/Time</td>
-            <td>Temp</td>
-            <td>Humidity</td>
-        </table>
-    </div>
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'main')">Main</button>
+    <button class="tablinks" onclick="openCity(event, 'history')">History</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Other</button>
+</div>
+
+<div id="main" class="tabcontent">
+    <section id="current-data">
+        <div id="current-temp"></div>
+        <div id="current-humi"></div>
+    </section>
+</div>
+
+<div id="history" class="tabcontent">
+    <table id="data">
+        <td>Date/Time</td>
+        <td>Temp</td>
+        <td>Humidity</td>
+    </table>
+</div>
+
 </html>
