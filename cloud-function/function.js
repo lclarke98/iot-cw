@@ -9,7 +9,7 @@ const pool = mysql.createPool({
 exports.handler = function handler(req, res) {
     const data = JSON.parse(Buffer.from(req.data, 'base64').toString());
    try{
-    pool.query("INSERT INTO data(humidity, tempC, room_name) VALUES (?,?,?)", [data.humidity, data.temperature, data.room])
+    pool.query("INSERT INTO data(humidity, tempC, sensor_ID, room_ID) VALUES (?,?,?,?)", [data.humidity, data.temperature, data.sensorID, data.roomID])
    }catch(error){
        console.log(error)
    }
