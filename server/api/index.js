@@ -29,7 +29,7 @@ api.get('/data', async (req, res) => {
 })
 
 api.get('/currentData', async (req, res) => {
-  var kf = new KalmanFilter()
+  
   const room = req.query.room
   console.log(room)
   try {
@@ -39,11 +39,34 @@ api.get('/currentData', async (req, res) => {
     currentData.push(firstReading)
     let secondReading = data.pop()
     currentData.push(secondReading)
-    console.log(kf.filter(46.25))
-    console.log(kf.filter(28.64))
+    test()
+    test1()
     res.send(currentData)
   } catch (e) {
     console.error(e)
     res.sendStatus(500)
   }
 })
+
+
+async function test(){
+  var kf = new KalmanFilter()
+  let data = await db.getData("bedroom")
+  let temp
+  for(let i = 0; i < data.length; i++){
+    temp = kf.filter(parseInt(data[i].tempC))
+  }
+  
+  console.log(temp)
+}
+
+async function test1(){
+  var kf = new KalmanFilter()
+  let data = await db.getData("bedroom")
+  let humi
+  for(let i = 0; i < data.length; i++){
+    humi = kf.filter(parseInt(data[i].humidity))
+  }
+  
+  console.log(humi)
+}
