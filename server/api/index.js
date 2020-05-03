@@ -2,7 +2,7 @@ const express = require('express');
 const api = express.Router();
 const db = require('../db-function');
 const bodyParser = require('body-parser')
-var KalmanFilter = require('kalmanjs')
+const KalmanFilter = require('kalmanjs')
 module.exports = api;
 
 api.use(bodyParser.json())
