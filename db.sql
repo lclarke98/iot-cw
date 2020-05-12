@@ -18,3 +18,4 @@ CREATE TABLE if not exists climateSensor.data(
 use climateSensor
 
 insert into room (room_name) values ('bedroom1');
+insert into room (room_name) values ('livingroom');

@@ -1,6 +1,6 @@
 window.addEventListener("load", pageLoad);
 
-function openCity(evt, cityName) {
+function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -10,13 +10,13 @@ function openCity(evt, cityName) {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(cityName).style.display = "block";
+  document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
 
 function pageLoad(){
     getRoom()
-    openCity(event, 'main')
+    openTab(event, 'main')
     getCurrentData()
     getAllData()
 }
@@ -47,14 +47,15 @@ async function getCurrentData(){
   const  url = `/api/currentData?room=${room}`
   const response = await fetch(url)
   const result = await response.json()
+  console.log(result)
   displayCurrentData(result)
 }
 
 function displayCurrentData(data){
   const currentTemp = document.getElementById("current-temp")
   const currentHumi = document.getElementById("current-humi")
-  currentTemp.textContent = data[0].tempC
-  currentHumi.textContent = data[0].humidity 
+  currentTemp.textContent = data.tempC
+  currentHumi.textContent = data.humidity 
 }
 
 function displayHistory(data){

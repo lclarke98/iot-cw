@@ -30,17 +30,10 @@ api.get('/data', async (req, res) => {
 api.get('/currentData', async (req, res) => {
   
   const room = req.query.room
-  console.log(room)
   try {
-    let data = await db.getData(room)
-    let currentData = []
-    let firstReading = data.pop()
-    currentData.push(firstReading)
-    let secondReading = data.pop()
-    currentData.push(secondReading)
-    test()
-    test1()
-    res.send(currentData)
+    let temp = await kalmanTemp(room)
+    let humi = await kalmanHumidity(room)
+    res.status(200).json({tempC:temp, humidity:humi})
   } catch (e) {
     console.error(e)
     res.sendStatus(500)
@@ -48,24 +41,22 @@ api.get('/currentData', async (req, res) => {
 })
 
 
-async function test(){
+async function kalmanTemp(room){
   var kf = new KalmanFilter()
-  let data = await db.getData("bedroom")
+  let data = await db.getData(room)
   let temp
   for(let i = 0; i < data.length; i++){
     temp = kf.filter(parseInt(data[i].tempC))
   }
-  
-  console.log(temp)
+  return temp
 }
 
-async function test1(){
+async function kalmanHumidity(room){
   var kf = new KalmanFilter()
-  let data = await db.getData("bedroom")
+  let data = await db.getData(room)
   let humi
   for(let i = 0; i < data.length; i++){
     humi = kf.filter(parseInt(data[i].humidity))
   }
-  
-  console.log(humi)
+  return humi
 }
