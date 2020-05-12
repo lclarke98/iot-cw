@@ -18,3 +18,21 @@ article{
 table, td {
     border: 1px solid black;
   }
+
+#room-list{
+    padding-left: 5vw;
+    padding-top: 2vh;
+    float: left;
+}
+
+#tile{
+    float: left;
+    padding: 10px;
+}
+
+nav{
+    background-color: #0D74EF;
+    width: 100vw;
+    height: 2vw;
+    padding: 0.5%;
+}

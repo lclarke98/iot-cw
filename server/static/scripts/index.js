@@ -18,7 +18,7 @@ async function displayRoomList(list){
         const tile = document.createElement("div")
         tile.id = "tile"
         const icon = document.createElement("IMG")
-        icon.setAttribute("src", "/image/nas-icon.png")
+        icon.setAttribute("src", "/image/room-icon.png")
         let name = document.createElement("figcaption")
         name.textContent = list[i].room_name
         let roomName = list[i].room_name

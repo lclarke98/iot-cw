@@ -54,8 +54,10 @@ async function getCurrentData(){
 function displayCurrentData(data){
   const currentTemp = document.getElementById("current-temp")
   const currentHumi = document.getElementById("current-humi")
-  currentTemp.textContent = data.tempC
-  currentHumi.textContent = data.humidity 
+  const header = document.getElementById("room-header")
+  header.textContent = "Current room temperature and humidity for:  " + room
+  currentTemp.textContent = "Current Temerature:  " + data.tempC.toFixed(1) + "°C"
+  currentHumi.textContent = "Current Humidity:   " + data.humidity.toFixed(1) + "%" 
 }
 
 function displayHistory(data){
@@ -65,12 +67,14 @@ function displayHistory(data){
         const time = document.createElement("td")
         const temp = document.createElement("td")
         const humi = document.createElement("td")
-        time.textContent = data[i].datetime
-        temp.textContent = data[i].tempC
-        humi.textContent = data[i].humidity
+        let dt = new Date(Date.parse(data[i].datetime));
+        time.textContent = dt
+        temp.textContent = parseInt(data[i].tempC).toFixed(1) + "°C"
+        humi.textContent = parseInt(data[i].humidity).toFixed(1) + "%"
         entry.appendChild(time)
         entry.appendChild(temp)
         entry.appendChild(humi)
         list.appendChild(entry)
       }
 }
+
