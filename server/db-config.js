@@ -1,6 +1,6 @@
 module.exports.mysql = {
-    host: '35.189.72.7',
-    user: 'root',
-    password: 'root',
+    host: '35.189.72.*',
+    user: '******',
+    password: '************',
     database: 'climateSensor'
   };
